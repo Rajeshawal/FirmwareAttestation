@@ -24,7 +24,68 @@ If App2 is newer:
     if invalid: keep App1
 ↓
 Bootloader jumps to App1
-## Important Educational Limitation The following files still need real production implementation before hardware use: - 04_MCAL/Src/can_program.c - 06_Service/Src/sha256_service.c - 06_Service/Src/crypto_service.c They are intentionally small so you can understand where real CAN, SHA-256, and RSA verification fit. Read:
+## Important Educational Limitation
+The following files still need real production implementation before hardware use: - 04_MCAL/Src/can_program.c - 06_Service/Src/sha256_service.c - 06_Service/Src/crypto_service.c They are intentionally small so you can understand where real CAN, SHA-256, and RSA verification fit. Read:
 text
 09_Docs/REAL_IMPLEMENTATION_GUIDE.md
-## Folder Summary - 00_Common shared types and memory map - 01_Bootloader bootloader decision logic - 02_App1 current application - 03_App2 new application source example - 04_MCAL low-level MCU drivers - 05_HAL board-level drivers - 06_Service update, version, hash, and crypto services - 07_RTOS simple delay placeholder - 08_Linkers memory linker examples - 09_Docs detailed explanation - 10_PrimaryECU_Uploader_Simulation CAN update protocol notes
+## Folder Summary
+- 00_Common shared types and memory map
+- 01_Bootloader bootloader decision logic
+- 02_App1 current application
+- 03_App2 new application source example
+- 04_MCAL low-level MCU drivers
+- 05_HAL board-level drivers
+- 06_Service update, version, hash, and crypto services
+- 07_RTOS simple delay placeholder
+- 08_Linkers memory linker examples
+- 09_Docs detailed explanation
+- 10_PrimaryECU_Uploader_Simulation CAN update protocol notes
+
+# Educational Use Disclaimer
+
+This project is intended strictly for:
+
+- educational purposes
+- research demonstrations
+- embedded systems learning
+- secure firmware update experimentation
+- cybersecurity training
+- academic demonstrations
+
+This repository is NOT production-ready.
+
+Several components intentionally contain simplified or placeholder implementations,
+including:
+
+- CAN communication handling
+- SHA-256 implementation
+- RSA signature verification
+- bootloader hardening
+- rollback protection
+- fault tolerance
+- secure key storage
+
+The cryptographic verification flow is demonstrated conceptually to help learners
+understand secure boot and FOTA architecture.
+
+Placeholder functions that return fixed success values MUST NOT be used in real:
+- automotive systems
+- industrial control systems (ICS)
+- operational technology (OT)
+- medical devices
+- aerospace systems
+- safety-critical environments
+- production embedded products
+
+Before deployment on real hardware, production-grade implementations should be added using properly audited libraries such as:
+
+- mbedTLS
+- wolfSSL
+- hardware secure elements
+- secure boot protections
+- authenticated update mechanisms
+
+The authors assume no responsibility for misuse, damage, firmware corruption,
+security failures, or unsafe deployment resulting from this educational code.
+
+Use at your own risk.
