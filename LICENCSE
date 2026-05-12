@@ -1,0 +1,72 @@
+MIT License
+
+Copyright (c) 2026 Rajesh Awal
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+# Disclaimer
+
+This project is intended strictly for:
+
+- educational purposes
+- research demonstrations
+- embedded systems learning
+- secure firmware update experimentation
+- cybersecurity training
+- academic demonstrations
+
+This repository is NOT production-ready.
+
+Several components intentionally contain simplified or placeholder implementations,
+including:
+
+- CAN communication handling
+- SHA-256 implementation
+- RSA signature verification
+- bootloader hardening
+- rollback protection
+- fault tolerance
+- secure key storage
+
+The cryptographic verification flow is demonstrated conceptually to help learners
+understand secure boot and FOTA architecture.
+
+Placeholder functions that return fixed success values MUST NOT be used in real:
+- automotive systems
+- industrial control systems (ICS)
+- operational technology (OT)
+- medical devices
+- aerospace systems
+- safety-critical environments
+- production embedded products
+
+Before deployment on real hardware, production-grade implementations should be added using properly audited libraries such as:
+
+- mbedTLS
+- wolfSSL
+- hardware secure elements
+- secure boot protections
+- authenticated update mechanisms
+
+The authors assume no responsibility for misuse, damage, firmware corruption,
+security failures, or unsafe deployment resulting from this educational code.
+
+Use at your own risk.
