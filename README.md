@@ -1,4 +1,9 @@
-# STM32F103C8T6 ECU Secure firmware over CAN This is a cleaned educational project for firmware update over CAN. ## Hardware - STM32F103C8T6 as ECU1 - MCP2551 CAN transceiver - Primary ECU sends update to ECU1 through CAN ## Memory Layout
+# STM32F103C8T6 ECU Secure firmware over CAN 
+
+This is a cleaned educational project for firmware update over CAN.
+## Hardware - STM32F103C8T6 as ECU1 - MCP2551 CAN transceiver - Primary ECU sends update to ECU1 through CAN 
+
+## Memory Layout
 text
 0x08000000 ─ Bootloader, 16 KB
 0x08004000 ─ App1, 24 KB, current trusted application
