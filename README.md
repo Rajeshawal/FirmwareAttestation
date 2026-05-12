@@ -1,18 +1,24 @@
-# STM32F103C8T6 ECU Secure firmware over CAN 
+# STM32F103C8T6 ECU Secure firmware over CAN
 
 This is a cleaned educational project for firmware update over CAN.
-## Hardware 
+
+## Hardware
+
 - STM32F103C8T6 as ECU1
 - MCP2551 CAN transceiver
-- Primary ECU sends update to ECU1 through CAN 
+- Primary ECU sends update to ECU1 through CAN
 
 ## Memory Layout
-text
+
+```text
 0x08000000 ─ Bootloader, 16 KB
 0x08004000 ─ App1, 24 KB, current trusted application
 0x0800A000 ─ App2, 20 KB, new update staging application
+```
+
 ## Main Idea
-text
+
+```text
 Power ON
 ↓
 Bootloader runs first
@@ -27,24 +33,127 @@ If App2 is newer:
     if invalid: keep App1
 ↓
 Bootloader jumps to App1
-## Important Educational Limitation
-The following files still need real production implementation before hardware use: - 04_MCAL/Src/can_program.c - 06_Service/Src/sha256_service.c - 06_Service/Src/crypto_service.c They are intentionally small so you can understand where real CAN, SHA-256, and RSA verification fit. Read:
-text
-09_Docs/REAL_IMPLEMENTATION_GUIDE.md
-## Folder Summary
-- 00_Common shared types and memory map
-- 01_Bootloader bootloader decision logic
-- 02_App1 current application
-- 03_App2 new application source example
-- 04_MCAL low-level MCU drivers
-- 05_HAL board-level drivers
-- 06_Service update, version, hash, and crypto services
-- 07_RTOS simple delay placeholder
-- 08_Linkers memory linker examples
-- 09_Docs detailed explanation
-- 10_PrimaryECU_Uploader_Simulation CAN update protocol notes
+```
 
-# Educational Use Disclaimer
+## Cryptographic Demonstration GUIs
+
+This project also includes educational Python Tkinter GUI tools to demonstrate firmware signing and verification logic used in secure boot and secure OTA/FOTA systems.
+
+These GUIs help visualize:
+
+- RSA key generation
+- SHA-256 hashing
+- firmware signing
+- firmware verification
+- public/private key usage
+- secure firmware trust chain
+
+They are intended for:
+
+- embedded security learning
+- firmware security demonstrations
+- research presentations
+- educational cryptographic workflow understanding
+
+---
+Educational Flow:
+
+```text
+Firmware Binary
+    ↓
+SHA-256 Hash
+    ↓
+RSA Private Key Signing
+    ↓
+Signed Firmware Package
+```
+
+---
+
+### 3. Firmware Verification GUI
+
+```text
+verify_gui.py
+```
+
+Purpose:
+
+- load firmware binary
+- calculate SHA-256 hash
+- verify RSA signature using public key
+- demonstrate secure boot verification process
+
+Educational Flow:
+
+```text
+Bootloader
+    ↓
+Load Public Key
+    ↓
+Calculate Firmware Hash
+    ↓
+Verify RSA Signature
+    ↓
+Accept or Reject Firmware
+```
+
+---
+
+## Demonstrated Secure Firmware Architecture
+
+```text
+OEM / Primary ECU
+    ↓
+Generate firmware
+    ↓
+Sign firmware with private key
+    ↓
+Transmit firmware through CAN
+    ↓
+ECU Bootloader receives App2
+    ↓
+Bootloader verifies SHA-256 hash
+    ↓
+Bootloader verifies RSA signature using embedded public key
+    ↓
+If valid:
+    copy App2 → App1
+Else:
+    reject update
+```
+
+## Important Educational Limitation
+
+The following files still need real production implementation before hardware use:
+
+- `04_MCAL/Src/can_program.c`
+- `06_Service/Src/sha256_service.c`
+- `06_Service/Src/crypto_service.c`
+
+They are intentionally small so you can understand where real CAN, SHA-256, and RSA verification fit.
+
+Read:
+
+```text
+09_Docs/REAL_IMPLEMENTATION_GUIDE.md
+```
+
+## Folder Summary
+
+- `00_Common` shared types and memory map
+- `01_Bootloader` bootloader decision logic
+- `02_App1` current application
+- `03_App2` new application source example
+- `04_MCAL` low-level MCU drivers
+- `05_HAL` board-level drivers
+- `06_Service` update, version, hash, and crypto services
+- `07_RTOS` simple delay placeholder
+- `08_Linkers` memory linker examples
+- `09_Docs` detailed explanation
+- `10_PrimaryECU_Uploader_Simulation` CAN update protocol notes
+- `11_GUI_Tools` educational cryptographic GUI demonstrations
+
+# Disclaimer
 
 This project is intended strictly for:
 
